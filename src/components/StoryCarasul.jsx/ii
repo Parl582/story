@@ -1,0 +1,81 @@
+import React, { useEffect, useRef, useState } from "react";
+
+const TextCarsul = ({ Sliders, autoSlide, interval }) => {
+  const [curr, setCurr] = useState(0);
+
+  const prev = () => {
+    setCurr((prev) => (prev === 0 ? Sliders.length - 1 : prev - 1));
+  };
+  const next = () => {
+    setCurr((prev) => (prev === Sliders.length - 1 ? 0 : prev + 1));
+  };
+  useEffect(() => {
+    if (!autoSlide) return;
+    const slides = setInterval(next, interval);
+
+    return () => clearInterval(slides);
+  }, []);
+
+  const [durations, setDuration] = useState();
+
+  const videoEl = useRef(null);
+
+  const handleLoadedMetadata = () => {
+    const video = videoEl.current;
+    if (!video) return;
+    console.log(`The video is ${video.duration} seconds long.`);
+    p;
+  };
+
+  return (
+    <div className="relative h-full w-full overflow-hidden">
+      <div
+        className={` flex h-full w-full transition-transform duration-500 ease-out `}
+        style={{ transform: `translateX(-${curr * 100}%)` }}
+      >
+        {Sliders.map((elm, index) => (
+          <>
+            {elm?.video ? (
+              <video
+                src={elm.video}
+                muted
+                autoPlay
+                width="100%"
+                ref={videoEl}
+                onLoadedMetadata={handleLoadedMetadata}
+              />
+            ) : (
+              <img
+                src={elm?.images}
+                alt=""
+                className={`  h-full w-full object-cover ${
+                  curr === index ? "animationss" : ""
+                } `}
+              />
+            )}
+          </>
+        ))}
+      </div>
+
+      <div className="absolute bottom-1 w-full">
+        <p>{Sliders[curr].text}</p>
+      </div>
+
+      <div className="absolute inset-0 flex justify-between opacity-0 ">
+        <button onClick={prev}> Prev </button>
+        <button onClick={next}> Next </button>
+      </div>
+      <div className="absolute left-0 right-0 top-0 flex flex-grow gap-[2px]">
+        {Sliders.map((i, index) => (
+          <div
+            className={`h-[5px] w-full border-[1px]  ${
+              curr === index ? "bg-[red]" : "bg-[green]"
+            } `}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default TextCarsul;

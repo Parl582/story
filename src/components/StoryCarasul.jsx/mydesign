@@ -1,0 +1,83 @@
+import React from "react";
+import "./Style.css";
+
+const NewCarasul = ({
+  Sliders,
+  autoSlide,
+  interval,
+  animationClass,
+  textAnimationClass,
+}) => {
+  const [curr, setCurr] = React.useState(0);
+  const prev = () => {
+    setCurr((prev) => (prev === 0 ? Sliders.length - 1 : prev - 1));
+  };
+  const next = () => {
+    setCurr((prev) => (prev === Sliders.length - 1 ? 0 : prev + 1));
+  };
+
+  React.useEffect(() => {
+    if (!autoSlide) return;
+    const slides = setInterval(next, interval);
+
+    return () => clearInterval(slides);
+  }, []);
+  return (
+    <>
+      <div
+        className={` flex h-full w-full   overflow-hidden relative
+  `}
+      >
+        {Sliders.map((item, i) => (
+          <div
+            className={`min-w-full h-full relative transition-transform duration-500 ease-out 
+           
+            `}
+            style={{ transform: `translateX(-${curr * 100}%)` }}
+          >
+            <img
+              src={item?.images}
+              alt=""
+              className={`w-full h-full object-cover  overflow-hidden ${
+                curr === i ? (animationClass ? animationClass : "") : ""
+              } `}
+            />
+            <p
+              className={`absolute bottom-0 left-0 right-0 p-5 text-white text-[1.3rem] overlayer_movie_details
+              ${
+                curr === i ? (textAnimationClass ? textAnimationClass : "") : ""
+              } 
+            
+            `}
+            >
+              {item?.text}{" "}
+            </p>
+          </div>
+        ))}
+
+        {/* button and ===> */}
+
+        <div className="absolute left-[0px] right-0 top-[3px] flex flex-grow gap-[2px] w-full">
+          {Sliders.map((i, index) => (
+            <div
+              className={` w-full ${
+                curr === index ? "bg-[#f7f7f7] progress" : "bg-[#c9c9c9]"
+              } `}
+            ></div>
+            // <div
+            //   className={`h-[3px] w-full border-[1px] rounded-xl   ${
+            //     curr === index ? "bg-[#989898]" : "bg-[#ffffff]"
+            //   } `}
+            // ></div>
+          ))}
+        </div>
+        <div className="absolute inset-0 flex justify-between opacity-0 ">
+          <button onClick={prev}> Prev </button>
+          <button onClick={next}> Next </button>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default NewCarasul;

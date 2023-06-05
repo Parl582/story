@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.animationss {
+  /* animation-name: example;
+  animation-duration: 9s; */
+  animation: 20s example ease-in-out infinite;
+
+
+}
+
+@keyframes example {
+  0% {
+    transform: scale(1.1)
+  }
+
+  50% {
+    transform: scale(1.4)
+  }
+
+  100% {
+    transform: scale(1.1)
+  }
+}
+
+.animation2 {
+  animation: 5s example2 ease-in-out both;
+}
+
+.animation3 {
+  animation: 1s animation3 ease-in-out both;
+}
+
+.animation4 {
+  animation: 10s animation4 ease-in-out both;
+}
+
+
+
+@keyframes example2 {
+  0% {
+    transform: scale(1.4)
+  }
+
+  100% {
+    transform: scale(1.1)
+  }
+}
+
+@keyframes animation3 {
+  0% {
+    transform: translateX(100%);
+    transform: scale3d(1.4);
+
+  }
+
+  100% {
+    transform: translateX(0);
+    transform: scale3d(1.4);
+  }
+}
+
+@keyframes animation4 {
+
+  from {
+    transform: rotate(0deg);
+
+  }
+
+  to {
+    transform: rotate(-360deg);
+
+  }
+
+}
+
+
+
+
+.gradient {
+  background-image: linear-gradient(to bottom, #a2a2a2, #888787, #969595, #727272, #7e7e7e);
+}
+
+
+.lineUp {
+  animation: 3s anim-lineUp ease-in-out;
+}
+
+@keyframes anim-lineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.LinleAnimation {
+  animation: 4s lineAnimation both
+}
+
+@keyframes lineAnimation {
+  from {
+    background-color: 0%;
+
+  }
+
+  to {
+    background-color: 100%;
+  }
+}
+
+
+
+
+.overlayer {
+  background-image: linear-gradient(to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.6) 65%,
+      rgba(0, 0, 0, 0.4) 75%,
+      rgba(0, 0, 0, 0) 100%) !important
+}
+
+.overlayer_movie_details {
+  background-image: linear-gradient(to top,
+      rgb(0, 0, 0) 0%,
+      rgba(5, 4, 4, 0.7) 50%,
+      rgba(0, 0, 0, 0.5) 65%,
+      rgba(0, 0, 0, 0.3) 75%,
+      rgba(166, 166, 166, 0) 100%) !important
+}
+
+.backgroundColor {
+  -webkit-animation: color-change-2x 2s linear infinite alternate both;
+  animation: color-change-2x 2s linear infinite alternate both;
+}
+
+
+
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #19dcea;
+  }
+
+  100% {
+    background: #b22cff;
+  }
+}
+
+@keyframes color-change-2x {
+  0% {
+    background: #19dcea;
+  }
+
+  100% {
+    background: #b22cff;
+  }
+}
